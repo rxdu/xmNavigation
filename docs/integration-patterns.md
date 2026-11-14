@@ -52,7 +52,7 @@ What the pattern encodes:
 - **Construction is configuration** (`MotorFactory::Create`) — swapping VESC for sim motors is a config change, not a code change; tests use the HAL's sim reference implementation.
 - **The group is capability-typed** — it can only do what its members declared (`SpeedControllable` + `SafetyStoppable`); a `Status` failure is aggregated, never swallowed, and the group's own fault counter (`driver.actuator_group.command_fault_count`) counts it without any application code.
 - **The algorithm never sees hardware** — `ComputeWheelCommands` is pure math; the application converts to HAL units at the boundary.
-- **Telemetry is one spine**: the application's span, the group's fault counter, and any driver-internal events share one clock and one trace identity. Binding the xmTelemetry SDK (production integrations) requires no change to this code.
+- **Telemetry is one spine**: the application's span, the group's fault counter, and any driver-internal events share one clock and one trace identity. Binding the xmTelemetry SDK requires no change to this code.
 
 ## The reactive-control pattern (MPPI example)
 
